@@ -55,3 +55,30 @@ variable "datasets" {
   }))
   default = {}
 }
+
+# Pipeline metadata. The pipeline reads these from the application's terraform.tfvars
+# to pick the template repo/tag and the state location; they are declared here so the
+# same tfvars file can be passed to Terraform as-is.
+variable "template_name" {
+  description = "Template repository name (set by the application tfvars, used for labels)."
+  type        = string
+  default     = "terraform-gcp-bq-template"
+}
+
+variable "template_version" {
+  description = "Template version tag, e.g. v1.1.0 (set by the application tfvars, used for labels)."
+  type        = string
+  default     = "unknown"
+}
+
+variable "state_bucket" {
+  description = "GCS bucket for Terraform state. Read by the pipeline for -backend-config; unused by Terraform."
+  type        = string
+  default     = null
+}
+
+variable "state_prefix" {
+  description = "GCS prefix for Terraform state. Read by the pipeline for -backend-config; unused by Terraform."
+  type        = string
+  default     = null
+}

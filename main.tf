@@ -2,6 +2,9 @@ locals {
   standard_labels = {
     env        = var.environment
     managed_by = "terraform"
+    # Label values allow only lowercase letters, digits, - and _.
+    template         = substr(replace(lower(var.template_name), "/[^a-z0-9_-]/", "-"), 0, 63)
+    template_version = substr(replace(lower(var.template_version), "/[^a-z0-9_-]/", "-"), 0, 63)
   }
 
   # Standard reader/writer/owner groups merged with any extra role grants,

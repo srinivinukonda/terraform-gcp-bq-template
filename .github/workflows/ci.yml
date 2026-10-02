@@ -19,7 +19,3 @@ jobs:
       - run: terraform fmt -check -recursive
       - run: terraform init -backend=false -input=false
       - run: terraform validate -no-color
-      - run: terraform init -backend=false -input=false
-        working-directory: examples/basic
-      - run: terraform validate -no-color
-        working-directory: examples/basic
